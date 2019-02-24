@@ -11,9 +11,9 @@ from utils import delete_nones, encode_ids
 from features import time_discretization, find_hexagon_id_of_pickup_coords, create_city_hexagons
 
 
-def main(features = False):
+def main(features = False, discr_period = 0.05):
     # TODO: insert data cleaning
-    if features:
+    if not features:
         frame = pd.read_csv("./data/clear_data.csv")
 
         # DATA PREPROCESSING
@@ -46,6 +46,9 @@ def main(features = False):
 
         feature_frame['load_coef'] = feature_frame.num_in / feature_frame.num_in.max()
 
+        feature_frame['weekend'] = feature_frame['weekend'].apply(int)
+        feature_frame['load_coef'] = (feature_frame['load_coef'] // discr_period) * discr_period
+
         # save feature frame
         feature_frame.to_csv("./data/features.scv", index=False)
     else:
@@ -57,7 +60,6 @@ def main(features = False):
     # X_train, X_val, y_train, y_val = train_test_split(X, y, train_size=0.9, random_state=42)
     #
     # # X_test = test_df
-
 
 
 
