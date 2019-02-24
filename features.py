@@ -1,14 +1,12 @@
-import pandas as pd
-import numpy as np
-from matplotlib import path
-from datetime import datetime, timedelta
 from h3 import h3
+import numpy as np
+import pandas as pd
 from tqdm import tqdm
-
+from matplotlib import path
+from datetime import datetime
 
 
 def find_hexagon_id_of_pickup_coords(hexagon_frame, frame):
-    # TODO: decide what to do with pickoff_lat and pickoff_lng
     pickup_coords = np.array(frame[['pickup_lat', 'pickup_lng']])
 
     hexagon_arr = np.array(hexagon_frame)[:, 1:]
@@ -53,10 +51,6 @@ def time_discretization(frame):
 
     time_period_frame = pd.DataFrame({'week_day': week_day, 'weekend': weekend, 'month': month, 'year': year})
     return time_period_frame
-
-
-def compute_load_coef():
-    pass
 
 
 def create_city_hexagons(lat=49.83826, lon=24.02324):
