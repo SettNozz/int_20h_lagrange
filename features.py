@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 from matplotlib import path
 from datetime import datetime, timedelta
+from h3 import h3
+
 
 
 def check_point_inside_hexagon(counter,area,coordinates):
