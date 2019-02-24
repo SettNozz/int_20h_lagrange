@@ -1,6 +1,21 @@
 import pandas as pd
 import numpy as np
+from matplotlib import path
 from datetime import datetime, timedelta
+
+
+def check_point_inside_hexagon(counter,area,coordinates):
+    p = path.Path(area)  
+    if p.contains_points([(coordinates[0],coordinates[1])]) == True:
+        counter += 1
+    return counter
+
+def check(area): #main function
+    pickup_coords = np.array(r_df[['pickup_lat', 'pickup_lng']])
+    counter = 0
+    for coordinates in pickup_coords:
+        counter = check_point_inside_hexagon(counter,area,coordinates)
+    return counter
 
 
 df = pd.read_csv('../data/clear_data.scv')
