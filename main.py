@@ -14,7 +14,7 @@ from features import time_discretization, find_hexagon_id_of_pickup_coords, crea
 def main(features = False):
     # TODO: insert data cleaning
     if features:
-        frame = pd.read_csv("./data/clear_data.scv")
+        frame = pd.read_csv("./data/clear_data.csv")
 
         # DATA PREPROCESSING
         frame = delete_nones(frame)
@@ -49,7 +49,7 @@ def main(features = False):
         # save feature frame
         feature_frame.to_csv("./data/features.scv", index=False)
     else:
-        feature_frame = pd.read_csv("./data/features.scv")
+        feature_frame = pd.read_csv("./data/features.csv")
 
 
 
